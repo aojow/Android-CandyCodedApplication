@@ -19,10 +19,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@PrepareForTest({AppCompatActivity.class, MainActivity.class, Intent.class, InfoActivity.class})
+@PrepareForTest({AppCompatActivity.class, MainActivitylife.class, Intent.class, InfoActivity.class})
 @RunWith(PowerMockRunner.class)
 public class _1_StartTheStoreInformationActivity {
-    private static MainActivity activity;
+    private static MainActivitylife activity;
 
     private static boolean onOptionsItemSelected_result = true;
     private static boolean called_Intent = false;
@@ -33,7 +33,7 @@ public class _1_StartTheStoreInformationActivity {
     @BeforeClass
     public static void setup() throws Exception {
         // Spy on a MainActivity instance.
-        activity = PowerMockito.spy(new MainActivity());
+        activity = PowerMockito.spy(new MainActivitylife());
         // Create a fake Bundle to pass in.
         Bundle bundle = Mockito.mock(Bundle.class);
         // Create a spy Intent to return from new Intent().
@@ -69,7 +69,7 @@ public class _1_StartTheStoreInformationActivity {
 
             try {
                 PowerMockito.verifyNew(Intent.class, Mockito.atLeastOnce()).withArguments(Mockito.any(
-                    MainActivity.class), Mockito.any(Class.class));
+                    MainActivitylife.class), Mockito.any(Class.class));
                 called_Intent = true;
             } catch (Throwable e) {
                 //e.printStackTrace();
@@ -115,7 +115,7 @@ public class _1_StartTheStoreInformationActivity {
         Class<?> myClass = null;
 
         try {
-            myClass = MainActivity.class
+            myClass = MainActivitylife.class
                     .getMethod("onOptionsItemSelected", MenuItem.class)
                     .getDeclaringClass();
         } catch (NoSuchMethodException e) {
@@ -123,9 +123,9 @@ public class _1_StartTheStoreInformationActivity {
         }
 
         assertEquals("onOptionsItemSelected() method doesn't exist in MainActivity class.",
-                myClass, MainActivity.class);
+                myClass, MainActivitylife.class);
 
         assertEquals("onOptionsItemSelected() method doesn't exist in MainActivity class.",
-                myClass, MainActivity.class);
+                myClass, MainActivitylife.class);
     }
 }
