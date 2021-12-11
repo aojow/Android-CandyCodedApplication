@@ -26,8 +26,12 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainActivitylife extends AppCompatActivity implements MainActivity {
   private Candy[] candies;
-  private CandyDbHelper candyDbHelper = new CandyDbHelper(this);
-  private Intent InfoIntent;
+  private final CandyDbHelper candyDbHelper = new CandyDbHelper(this);
+  private final Intent InfoIntent;
+
+  public MainActivitylife(Intent infoIntent) {
+    InfoIntent = infoIntent;
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +66,11 @@ public class MainActivitylife extends AppCompatActivity implements MainActivity 
           @Override
           public void onSuccess(int statusCode, Header[] headers, String response) {
             Log.d("AsyncHttpClient", "response = " + response);
-            Gson gson = new GsonBuilder().create();;
+            Gson gson = new GsonBuilder().create();
             candies = gson.fromJson(response, Candy[].class);
 
             addCandiesToDatabase(candies);
 
-            SQLiteDatabase db = candyDbHelper.getWritableDatabase();
-            Cursor cursor = db.rawQuery("SELECT * FROM candy", null);
             //adapter.changeCursor(cursor);
           }
         });
@@ -80,14 +82,6 @@ public class MainActivitylife extends AppCompatActivity implements MainActivity 
     inflater.inflate(R.menu.main, menu);
     return true;
   }
-  // ***
-  // TODO - Task 1 - Show Store Information Activity
-  // ***
-@Override
-public <MenuItem> boolean onOptionsItemsSelected (MenuItem item) {
-    startActivity(InfoIntent);
-    return super.onOptionsItemSelected((android.view.MenuItem) item);
-}
 
   private void addCandiesToDatabase(Candy[] candies) {
     SQLiteDatabase db = candyDbHelper.getWritableDatabase();
